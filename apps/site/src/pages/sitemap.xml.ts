@@ -3,7 +3,8 @@ import { bench } from "../data/bench";
 import { isoDate, releasePath, releases } from "../data/releaseNotes";
 
 export const GET: APIRoute = async ({ site }) => {
-  const home = new URL(import.meta.env.BASE_URL, site);
+  const base = import.meta.env.BASE_URL;
+  const home = new URL(base.endsWith("/") ? base : `${base}/`, site);
   const all = await releases();
   const stable = all.filter((r) => !r.nightly);
   const newest = stable.map((r) => isoDate(r.date)).sort().at(-1);

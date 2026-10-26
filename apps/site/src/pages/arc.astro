@@ -7,7 +7,7 @@ import Footer from "../components/Footer.astro";
 import { MIN_MACOS, VERSION } from "../data/release";
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, "");
-const home = new URL(import.meta.env.BASE_URL, Astro.site).href;
+const home = new URL(`${base}/`, Astro.site).href;
 const url = new URL("arc/", home).href;
 const title = "Moving from Arc? A free Arc replacement for Mac · Ardia";
 const description =
@@ -40,11 +40,11 @@ const jsonLd = [
 ];
 
 const carried = [
-  { from: "Spaces", to: "Each space you pick becomes its own profile, with its name, colour and theme." },
+  { from: "Spaces", to: "The first space you pick fills the profile you import into. Each other one becomes its own profile, with its name and colour. Every space keeps its theme." },
   { from: "Pinned tabs", to: "Pinned rows in that profile, with the names you gave them." },
   { from: "Pinned folders", to: "Pinned groups. Folders inside folders stay nested." },
   { from: "Favorites", to: "Tiles at the top of the sidebar." },
-  { from: "Open tabs", to: "An “Imported” group, so nothing goes missing." },
+  { from: "Open tabs", to: "An “Imported” group. Tabs already open in Ardia, and internal pages like arc://, are skipped." },
   { from: "Bookmarks, history, passwords, cookies", to: "Into the first profile, so you’re still signed in there." },
   { from: "Extensions", to: "Listed after the import, so you can add them back from the Chrome Web Store." },
 ];
@@ -293,3 +293,7 @@ const timeline = [
     }
   }
 </style>
+
+<script>
+  import "../scripts/motion";
+</script>
