@@ -11,6 +11,7 @@ export const GET: APIRoute = async ({ site }) => {
   const pages: [string, string | undefined][] = [
     ["", newest],
     ["try/", undefined],
+    ["arc/", undefined],
     ["benchmarks/", bench && !bench.sample ? bench.measured : undefined],
     ["release-notes/", newestNote],
     ...stable.map((r): [string, string] => [releasePath(r.version), isoDate(r.date)]),
