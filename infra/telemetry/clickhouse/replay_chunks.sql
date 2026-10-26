@@ -1,7 +1,3 @@
--- Read-only access to session replay chunks for the reader user.
--- The reader has no URL grant, so this view runs as the admin (SQL SECURITY DEFINER),
--- and only ever reads replays/<day>/<session>/<seq>.json[.gz] from the replay store.
--- Usage: SELECT seq, json FROM telemetry.replay_chunks(day = '2026-10-26', session = '<session id>') ORDER BY seq
 CREATE OR REPLACE VIEW telemetry.replay_chunks
 DEFINER = default SQL SECURITY DEFINER
 AS
