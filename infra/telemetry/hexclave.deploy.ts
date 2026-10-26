@@ -44,8 +44,8 @@ export const deploy = ({ secret, service }: any) => ({
       image: SEAWEEDFS,
       startCommand:
         "mkdir -p /data/weed && cd /data/weed && " +
-        "{ (until echo 'fs.configure -locationPrefix=/buckets/replays/ -ttl=30d -apply' | weed shell -master=localhost:9333 2>/dev/null | grep -q replays; do sleep 3; done; echo '[ac] replays kept 30 days') & } && " +
-        "exec weed server -dir=/data/weed -filer -master.volumePreallocate=false -volume.max=200",
+        "{ (until echo 'fs.configure -locationPrefix=/buckets/replays/ -ttl=14d -apply' | weed shell -master=localhost:9333 2>/dev/null | grep -q replays; do sleep 3; done; echo '[ac] replays kept 14 days') & } && " +
+        "exec weed server -dir=/data/weed -filer -master.volumePreallocate=false -master.volumeSizeLimitMB=1024 -volume.max=200",
       persistentVolumes: { objects: { path: "/data", sizeGb: 20 } },
       env: {},
     },
